@@ -3,35 +3,32 @@ import pygame
 from pygame import Surface, display
 from pygame.locals import *
 
-from trrne.res import Resolution
-from trrne.colour import COLOR
+from config import *
 from trrne.vec2 import V2
 
 
 class app:
-    def __init__(self, title: str,  resolution: Resolution) -> None:
+    def __init__(self, title: str,  size: V2) -> None:
         self.__title: str = title
-        self.__resolution: Resolution = resolution
+        self.__size: V2 = size
 
     def title(self) -> str:
         return self.__title
 
-    def resolution(self) -> Resolution:
-        return self.__resolution
+    def size(self) -> V2:
+        return self.__size
 
-    # @staticmethod
     def screen(self) -> Surface:
         pygame.init()
         display.set_caption(self.title())
-        return display.set_mode((self.resolution().width, self.resolution().height))
+        return display.set_mode((self.__size.x, self.__size.y))
 
-    # @staticmethod
-    def center(self) -> tuple[int, int]:
-        center = self.__resolution.center()
-        return (center.x, center.y)
+    def center(self) -> tuple[int | float, int | float]:
+        # res: V2 = V2(self.__size.x, self.__size.y)
+        return (self.__size.x/2, self.__size.y/2)
 
     @staticmethod
-    def font(name: str, size: int, is_bold: bool) -> pygame.font.SysFont:
+    def font(size: int, is_bold: bool = False, name: str = None) -> pygame.font.SysFont:
         return pygame.font.SysFont(name=name, size=size, bold=is_bold)
 
     @staticmethod
@@ -51,3 +48,11 @@ class app:
         display.update()
         app.quit()
         return sys.executable  # __is_running
+
+    @staticmethod
+    def delta_time() -> float:
+        return pygame.time.Clock().tick(GAME_FPS) / 1000
+
+    @staticmethod
+    def cursor_pos() -> V2:
+        return V2(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])

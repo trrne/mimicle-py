@@ -13,6 +13,9 @@ class V2:
     def to_tuple(self) -> tuple[int | float, int | float]:
         return (self.x, self.y)
 
+    def to_string(self) -> str:
+        return f'{self.x},{self.y}'
+
     @staticmethod
     def to_v2(t: tuple[int | float, int | float]):
         return V2(t[0], t[1])
