@@ -4,7 +4,7 @@ from pygame import Surface, display
 from pygame.locals import *
 
 from config import *
-from trrne.vec2 import V2
+from trrne.v2 import V2
 
 
 class app:
@@ -24,7 +24,6 @@ class app:
         return display.set_mode((self.__size.x, self.__size.y))
 
     def center(self) -> tuple[int | float, int | float]:
-        # res: V2 = V2(self.__size.x, self.__size.y)
         return (self.__size.x/2, self.__size.y/2)
 
     @staticmethod
@@ -38,16 +37,11 @@ class app:
                 pygame.quit()
                 sys.exit()
 
-    # @staticmethod
-    # def update() -> None:
-    #     display.update()
-    #     app.quit()
-
     @staticmethod
     def update() -> bool:
         display.update()
         app.quit()
-        return sys.executable  # __is_running
+        return sys.executable
 
     @staticmethod
     def delta_time() -> float:

@@ -1,4 +1,4 @@
-from pg.mathf import Math
+from trrne.mathf import Math
 
 
 class Ammo:

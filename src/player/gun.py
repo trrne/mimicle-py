@@ -1,9 +1,10 @@
 from ammo import Ammo
 
 
-class Fire:
+class Gun:
     def __init__(self, ammo: Ammo) -> None:
-        self.__ammo: Ammo = ammo
+        self.__ammo = ammo
+
         self.__mode: int = 0
         self.__grade: int = 0
         self.__is_firing: bool = False
@@ -20,13 +21,11 @@ class Fire:
     def change_weapon(self) -> None:
         pass
 
-    def shot(self, active_grade: int):
-        if not isinstance(active_grade, int):
-            raise Exception
+    def shot(self, active_grade: int) -> None:
         self.__is_firing = True
         self.__grade = active_grade
         self.__ammo.reduce()
-        if active_grade == (0 or 1):
+        if active_grade == 0:
             print('shot AR')
         else:
             print('shot RL')

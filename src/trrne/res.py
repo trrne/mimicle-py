@@ -1,6 +1,6 @@
 from enum import Enum
 
-from trrne.vec2 import V2
+from trrne.v2 import V2
 
 
 class RESNUM:
